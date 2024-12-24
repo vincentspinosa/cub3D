@@ -6,7 +6,7 @@
 /*   By: vispinos <vispinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 23:10:45 by vispinos          #+#    #+#             */
-/*   Updated: 2024/12/17 17:48:06 by vispinos         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:52:31 by vispinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	set_floor(t_state *s, t_ray *ray, int col)
 	int	rank;
 
 	rank = ray->wall_bottom;
-	while (rank < s->window_height)
+	while (rank < DISPLAY_HEIGHT)
 	{
 		s->image.addr[(rank * (s->image.sl >> 2)) + col] = s->txt_state.f_hx;
 		rank++;
@@ -61,7 +61,7 @@ void	fill_frame(t_state *s, t_txt_state *txt_state, t_ray *ray, int col)
 		|| (ray->vertical_or_horiz_flag == VERTICAL_FLAG && ray->dir_y > 0))
 		txt_state->col = TEXTURE_SIZE - txt_state->col - 1;
 	txt_state->step = (float)TEXTURE_SIZE / ray->wall_height_on_screen;
-	txt_state->rank_address = (ray->wall_top - (s->window_height >> 1) \
+	txt_state->rank_address = (ray->wall_top - (DISPLAY_HEIGHT >> 1) \
 	+ (ray->wall_height_on_screen >> 1)) * txt_state->step;
 	rank_mask = TEXTURE_SIZE - 1;
 	y = ray->wall_top;

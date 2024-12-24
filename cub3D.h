@@ -6,7 +6,7 @@
 /*   By: vispinos <vispinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:01:54 by vispinos          #+#    #+#             */
-/*   Updated: 2024/12/17 17:48:16 by vispinos         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:54:45 by vispinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,6 @@ typedef struct s_state
 {
 	void				*mlx;
 	void				*window;
-	int					window_width;
-	int					window_height;
 	t_img				image;
 	t_player			player;
 	t_ray				ray;

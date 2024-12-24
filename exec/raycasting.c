@@ -6,7 +6,7 @@
 /*   By: vispinos <vispinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 02:41:09 by vispinos          #+#    #+#             */
-/*   Updated: 2024/12/17 17:47:52 by vispinos         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:54:20 by vispinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,21 @@ static void	digital_differential_analizer(t_state *s, t_ray *ray)
 	}
 }
 
-static void	compute_wall_height(t_state *s, t_ray *ray, t_player *player)
+static void	compute_wall_height(t_ray *ray, t_player *player)
 {
 	if (ray->vertical_or_horiz_flag == HORIZONTAL_FLAG)
 		ray->wall_dist = ray->side_dist_x - ray->delta_dist_x;
 	else
 		ray->wall_dist = ray->side_dist_y - ray->delta_dist_y;
-	ray->wall_height_on_screen = (int)(s->window_height / ray->wall_dist);
+	ray->wall_height_on_screen = (int)(DISPLAY_HEIGHT / ray->wall_dist);
 	ray->wall_top = ((ray->wall_height_on_screen * -1) >> 1) \
-	+ (s->window_height >> 1);
+	+ (DISPLAY_HEIGHT >> 1);
 	if (ray->wall_top < 0)
 		ray->wall_top = 0;
 	ray->wall_bottom = (ray->wall_height_on_screen >> 1) + \
-	(s->window_height >> 1);
-	if (ray->wall_bottom > s->window_height)
-		ray->wall_bottom = s->window_height;
+	(DISPLAY_HEIGHT >> 1);
+	if (ray->wall_bottom > DISPLAY_HEIGHT)
+		ray->wall_bottom = DISPLAY_HEIGHT;
 	if (ray->vertical_or_horiz_flag == HORIZONTAL_FLAG)
 		ray->wall_x_offset = player->pos_y + ray->wall_dist * ray->dir_y;
 	else
@@ -96,12 +96,12 @@ void	raycasting(t_player *player, t_state *s)
 	int		col;
 
 	col = 0;
-	while (col < s->window_width)
+	while (col < DISPLAY_WIDTH)
 	{
 		set_raycasting(col, &(s->ray), player);
 		set_dda(&(s->ray), player);
 		digital_differential_analizer(s, &(s->ray));
-		compute_wall_height(s, &(s->ray), player);
+		compute_wall_height(&(s->ray), player);
 		fill_frame(s, &(s->txt_state), &(s->ray), col);
 		col++;
 	}

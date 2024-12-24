@@ -6,7 +6,7 @@
 /*   By: vispinos <vispinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:20:58 by vispinos          #+#    #+#             */
-/*   Updated: 2024/12/11 11:38:02 by vispinos         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:51:37 by vispinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	render_frame(t_state *s)
 {
 	handle_moves(s);
 	init_ray(&(s->ray));
-	init_img(s, &(s->image), s->window_width, s->window_height);
+	init_img(s, &(s->image), DISPLAY_WIDTH, DISPLAY_HEIGHT);
 	raycasting(&(s->player), s);
 	mlx_put_image_to_window(s->mlx, s->window, s->image.img, 0, 0);
 	mlx_destroy_image(s->mlx, s->image.img);

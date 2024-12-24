@@ -6,7 +6,7 @@
 /*   By: vispinos <vispinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 23:14:14 by vispinos          #+#    #+#             */
-/*   Updated: 2024/12/11 12:11:48 by vispinos         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:54:39 by vispinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	init_state(t_state *s)
 {
 	s->mlx = NULL;
 	s->window = NULL;
-	s->window_height = DISPLAY_HEIGHT;
-	s->window_width = DISPLAY_WIDTH;
 	init_player(&(s->player));
 	s->textures = NULL;
 	init_txt_state(&(s->txt_state));
